@@ -5,7 +5,7 @@ const streamPipeline = promisify(pipeline);
 
 export default async (_req, res, path) => {
     try {
-        const response = await fetch(`https://gimkit.com${path}`);
+        const response = await fetch(`https://www.blooket.com${path}`);
 
         ['content-type', 'set-cookie'].forEach((header) => {
             if (response.headers.has(header))
