@@ -1,3 +1,11 @@
+import { HttpProxyAgent } from 'http';
+import { HttpsProxyAgent } from 'https';
+
+const PROXY_URL = 'http://fofzmrrk:j9i3uvpcnci9@p.webshare.io:80';
+
+const httpAgent = new HttpProxyAgent(PROXY_URL);
+const httpsAgent = new HttpsProxyAgent(PROXY_URL);
+
 export default async (req, res, path) => {
     try {
         const fetchOptions = {
@@ -21,12 +29,11 @@ export default async (req, res, path) => {
                 'sec-fetch-mode': 'cors',
                 'sec-fetch-site': 'same-origin',
                 'upgrade-insecure-requests': '1',
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
-                'x-forwarded-for': req.headers['x-forwarded-for'] || req.socket.remoteAddress,
-                'x-forwarded-proto': 'https'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36'
             },
             body: Object.keys(req.body).length < 1 ? undefined : JSON.stringify(req.body),
-            redirect: 'manual'
+            redirect: 'manual',
+            dispatcher: httpsAgent
         };
 
         const response = await fetch(`https://www.blooket.com${path}`, fetchOptions);
