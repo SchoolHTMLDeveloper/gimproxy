@@ -21,7 +21,9 @@ export default async (req, res, path) => {
                 'sec-fetch-mode': 'cors',
                 'sec-fetch-site': 'same-origin',
                 'upgrade-insecure-requests': '1',
-                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
+                'x-forwarded-for': req.headers['x-forwarded-for'] || req.socket.remoteAddress,
+                'x-forwarded-proto': 'https'
             },
             body: Object.keys(req.body).length < 1 ? undefined : JSON.stringify(req.body),
             redirect: 'manual'
