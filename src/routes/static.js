@@ -10,10 +10,10 @@ export default async (req, res, path) => {
                 'connection': 'keep-alive',
                 'content-type': Object.keys(req.body).length < 1 ? undefined : 'application/json',
                 cookie: req.headers.cookie,
-                host: 'www.gimkit.com',
-                origin: 'https://www.gimkit.com',
+                host: 'www.blooket.com',
+                origin: 'https://www.blooket.com',
                 pragma: 'no-cache',
-                referer: 'https://www.gimkit.com/',
+                referer: 'https://www.blooket.com/',
                 'sec-ch-ua': '"Not.A/Brand";v="8", "Chromium";v="134", "Google Chrome";v="134"',
                 'sec-ch-ua-mobile': '?0',
                 'sec-ch-ua-platform': '"macOS"',
@@ -27,7 +27,7 @@ export default async (req, res, path) => {
             redirect: 'manual'
         };
 
-        const response = await fetch(`https://www.gimkit.com${path}`, fetchOptions);
+        const response = await fetch(`https://www.blooket.com${path}`, fetchOptions);
 
         ['content-type', 'set-cookie'].forEach((header) => {
             if (response.headers.has(header))
